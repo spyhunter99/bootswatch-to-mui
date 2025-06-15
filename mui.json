@@ -1,0 +1,36 @@
+{
+  "palette": {
+    "primary": {
+      "main": "#3a3f44"
+    },
+    "secondary": {
+      "main": "#7a8288"
+    },
+    "error": {
+      "main": "#ee5f5b"
+    },
+    "warning": {
+      "main": "#f89406"
+    },
+    "info": {
+      "main": "#5bc0de"
+    },
+    "success": {
+      "main": "#62c462"
+    },
+    "background": {
+      "default": "#272b30",
+      "paper": "#0d0d0d"
+    },
+    "text": {
+      "primary": "#aaa"
+    }
+  },
+  "typography": {
+    "fontFamily": "Roboto, sans-serif",
+    "fontSize": 14
+  },
+  "shape": {
+    "borderRadius": 4
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "bootswatch-to-mui",
+    "version": "1.0.0",
+    "description": "Convert Bootswatch (Bootstrap 5) themes into MUI-compatible theme configuration.",
+    "bin": {
+        "bootswatch-to-mui": "./bin/cli.js"
+    },
+    "type": "module",
+    "keywords": [
+        "mui",
+        "bootstrap",
+        "bootswatch",
+        "theme",
+        "cli",
+        "material-ui"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "commander": "^11.0.0",
+        "tinycolor2": "^1.6.0"
+    }
+}
