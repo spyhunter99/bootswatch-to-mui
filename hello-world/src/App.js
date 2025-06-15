@@ -10,6 +10,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import { CssBaseline, createTheme,Box, ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Input from '@mui/material/Input';
+import  Select  from '@mui/material/Select';
+import  MenuItem  from '@mui/material/MenuItem';
+import  InputLabel  from '@mui/material/InputLabel';
+import  FormControl  from '@mui/material/FormControl';
+
+
 function App() {
 
   
@@ -89,7 +97,22 @@ const rows = [
         </TableBody>
       </Table>
     </TableContainer>
-</Paper>
+    <Input type={Text} value={'hello world2'}/>
+    <TextField disabled={false} value={'hello world'}></TextField>
+    <FormControl fullWidth>
+    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+    <Select
+      labelId="demo-simple-select-label"
+      id="demo-simple-select"
+      value={18}
+      label="Age"
+    >
+      <MenuItem value={10}>Ten</MenuItem>
+      <MenuItem value={20}>Twenty</MenuItem>
+      <MenuItem value={30}>Thirty</MenuItem>
+    </Select>
+    </FormControl>
+  </Paper>
     </div>
  
   );

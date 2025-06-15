@@ -47,6 +47,49 @@
           }
         }
       }
+    },
+    "MuiTable": {
+      "styleOverrides": {
+        "root": {
+          "backgroundColor": "#272b30",
+          "color": "initial",
+          "borderColor": "rgba(0, 0, 0, 0.6)"
+        }
+      }
+    },
+    "MuiTableCell": {
+      "styleOverrides": {
+        "root": {
+          "borderColor": "rgba(0, 0, 0, 0.6)"
+        }
+      }
+    },
+    "MuiTableHead": {
+      "styleOverrides": {
+        "root": {
+          "backgroundColor": "#f8f9fa",
+          "color": "initial"
+        }
+      }
+    },
+    "MuiTableRow": {
+      "styleOverrides": {
+        "root": {
+          "&:hover": {
+            "backgroundColor": "rgba(255, 255, 255, 0.08)"
+          },
+          "&.Mui-selected": {
+            "backgroundColor": "#007bff"
+          }
+        }
+      }
+    },
+    "MuiTableBody": {
+      "styleOverrides": {
+        "root": {
+          "backgroundColor": "transparent"
+        }
+      }
     }
   }
 }

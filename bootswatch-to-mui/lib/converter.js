@@ -90,7 +90,52 @@ export function mapToMuiTheme(bootstrapVars) {
             },
           },
         },
-      }
+      }, MuiTable: {
+        styleOverrides: {
+          root: {
+            backgroundColor: resolveColorExpression(bootstrapVars['table-bg'], bootstrapVars) || 
+              resolveColorExpression(bootstrapVars['body-bg'], bootstrapVars),
+            
+            color: resolveColorExpression(bootstrapVars['table-color'], bootstrapVars) || '#212529',
+            borderColor: resolveColorExpression(bootstrapVars['table-border-color'], bootstrapVars) || '#ddd',
+          },
+        },
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            borderColor: resolveColorExpression(bootstrapVars['table-border-color'], bootstrapVars) || '#ddd',
+          },
+        },
+      },
+      MuiTableHead: {
+        styleOverrides: {
+          root: {
+            backgroundColor: resolveColorExpression(bootstrapVars['table-bg'], bootstrapVars) || 
+              resolveColorExpression(bootstrapVars['body-bg'], bootstrapVars),
+            color: resolveColorExpression(bootstrapVars['table-color'], bootstrapVars) || '#495057',
+          },
+        },
+      },
+      MuiTableRow: {
+        styleOverrides: {
+          root: {
+            '&:hover': {
+              backgroundColor: resolveColorExpression(bootstrapVars['table-hover-bg'], bootstrapVars) || '#f1f3f5',
+            },
+            '&.Mui-selected': {
+              backgroundColor: resolveColorExpression(bootstrapVars['table-active-bg'], bootstrapVars) || '#007bff',
+            },
+          },
+        },
+      },
+      MuiTableBody: {
+        styleOverrides: {
+          root: {
+            backgroundColor: resolveColorExpression(bootstrapVars['table-striped-bg'], bootstrapVars) || 'transparent',
+          },
+        },
+      },
     }
   };
 
