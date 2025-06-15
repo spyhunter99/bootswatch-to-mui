@@ -2,16 +2,59 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+import { createTheme,Box, ThemeProvider } from '@mui/material/styles';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const mytheme={
+  "palette": {
+    "primary": {
+      "main": "#3a3f44"
+    },
+    "secondary": {
+      "main": "#7a8288"
+    },
+    "error": {
+      "main": "#ee5f5b"
+    },
+    "warning": {
+      "main": "#f89406"
+    },
+    "info": {
+      "main": "#5bc0de"
+    },
+    "success": {
+      "main": "#62c462"
+    },
+    "background": {
+      "default": "#272b30",
+      "paper": "#0d0d0d"
+    },
+    "text": {
+      "primary": "#aaa"
+    }
+  },
+  "typography": {
+    "fontFamily": "Roboto, sans-serif",
+    "fontSize": 14
+  },
+  "shape": {
+    "borderRadius": 4
+  }
+};
+
+  const  theme = createTheme(mytheme);
+ 
+    document.body.style.backgroundColor = theme.palette.background.default;
+    document.body.style.color = theme.palette.text.primary;
+ 
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+    <App /></ThemeProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
