@@ -68,7 +68,7 @@ export function mapToMuiTheme(bootstrapVars) {
       text: {
         primary: resolveColorExpression(bootstrapVars['body-color'], bootstrapVars) || '#212529',
         secondary: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d',
-      }
+      },
     },
     typography: {
       fontFamily: bootstrapVars['font-family-base']?.replace(/['"]/g, '') || 'Roboto, sans-serif',
@@ -81,16 +81,18 @@ export function mapToMuiTheme(bootstrapVars) {
       MuiButton: {
         styleOverrides: {
           root: {
-            color: resolveColorExpression(bootstrapVars['white'], bootstrapVars) || '#fff', // Set button text color
+            color: resolveColorExpression(bootstrapVars['white'], bootstrapVars) || '#fff',
             '&:hover': {
-              backgroundColor: resolveColorExpression(bootstrapVars['primary'], bootstrapVars) || '#007bff', // primary hover
+              backgroundColor: resolveColorExpression(bootstrapVars['primary'], bootstrapVars) || '#007bff',
             },
             '&.MuiSecondary': {
-              color: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d', // secondary button color
+              color: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d',
             },
           },
         },
-      }, MuiTable: {
+      },
+      // MUI Table (previous implementation remains the same)
+      MuiTable: {
         styleOverrides: {
           root: {
             backgroundColor: resolveColorExpression(bootstrapVars['table-bg'], bootstrapVars) || 
@@ -136,11 +138,95 @@ export function mapToMuiTheme(bootstrapVars) {
           },
         },
       },
-    }
+      // MUI TextField
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            backgroundColor: resolveColorExpression(bootstrapVars['input-bg'], bootstrapVars) || '#fff',
+            color: resolveColorExpression(bootstrapVars['input-color'], bootstrapVars) || '#212529',
+            borderColor: resolveColorExpression(bootstrapVars['input-border-color'], bootstrapVars) || '#ced4da',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: resolveColorExpression(bootstrapVars['input-border-color'], bootstrapVars) || '#ced4da',
+              },
+              '&:hover fieldset': {
+                borderColor: resolveColorExpression(bootstrapVars['input-focus-border-color'], bootstrapVars) || '#80bdff',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: resolveColorExpression(bootstrapVars['input-focus-border-color'], bootstrapVars) || '#80bdff',
+              },
+              // Fix for Outlined Input label position when text is inside
+              '& .MuiInputLabel-root': {
+                top: '10px', // Adjust this to fine-tune the label positioning
+              },
+              '& .MuiInputBase-input': {
+                color: resolveColorExpression(bootstrapVars['input-color'], bootstrapVars) || '#212529',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d',
+              '&.Mui-focused': {
+                color: resolveColorExpression(bootstrapVars['primary'], bootstrapVars) || '#007bff',
+              },
+            },
+            '& .MuiInputBase-input': {
+              color: resolveColorExpression(bootstrapVars['input-color'], bootstrapVars) || '#212529',
+            },
+            '& .MuiInputBase-input::placeholder': {
+              color: resolveColorExpression(bootstrapVars['input-placeholder-color'], bootstrapVars) || '#6c757d',
+            },
+            '& input:disabled': {
+              backgroundColor: resolveColorExpression(bootstrapVars['input-disabled-bg'], bootstrapVars) || '#e9ecef',
+              color: resolveColorExpression(bootstrapVars['input-disabled-color'], bootstrapVars) || '#6c757d',
+            },
+          },
+        },
+      },
+      // MUI InputLabel
+      MuiInputLabel: {
+        styleOverrides: {
+          root: {
+            color: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d',
+            '&.Mui-focused': {
+              color: resolveColorExpression(bootstrapVars['primary'], bootstrapVars) || '#007bff',
+            },
+          },
+        },
+      },
+      // MUI Select
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            backgroundColor: resolveColorExpression(bootstrapVars['input-bg'], bootstrapVars) || '#fff',
+            color: resolveColorExpression(bootstrapVars['input-color'], bootstrapVars) || '#212529',
+            borderColor: resolveColorExpression(bootstrapVars['input-border-color'], bootstrapVars) || '#ced4da',
+            '&:hover': {
+              borderColor: resolveColorExpression(bootstrapVars['input-focus-border-color'], bootstrapVars) || '#80bdff',
+            },
+            '&.Mui-focused': {
+              borderColor: resolveColorExpression(bootstrapVars['input-focus-border-color'], bootstrapVars) || '#80bdff',
+            },
+            // Fix for Select box label position when text is selected
+            '& .MuiInputLabel-root': {
+              top: '10px', // Adjust for correct label positioning when selection occurs
+            },
+          },
+        },
+      },
+      // MUI InputBase (Standard Input Box)
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            paddingLeft: '16px', // Ensure padding matches the other input fields
+          },
+        },
+      },
+    },
   };
 
   return theme;
 }
+
 
 // Main function to convert a SCSS file to MUI theme format
 export function convertTheme(filePath) {

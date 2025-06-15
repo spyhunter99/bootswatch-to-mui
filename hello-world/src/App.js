@@ -97,19 +97,21 @@ const rows = [
         </TableBody>
       </Table>
     </TableContainer>
-    <Input type={Text} value={'hello world2'}/>
-    <TextField disabled={false} value={'hello world'}></TextField>
+    <Input type={Text} value={'hello world2'}/><br/><br/>
+    <TextField id="outlined-basic" label="Outlined" variant="outlined" /><br/><br/>
+<TextField id="filled-basic" label="Filled" variant="filled" /><br/><br/>
+<TextField id="standard-basic" label="Standard" variant="standard" /><br/><br/>
     <FormControl fullWidth>
     <InputLabel id="demo-simple-select-label">Age</InputLabel>
     <Select
       labelId="demo-simple-select-label"
       id="demo-simple-select"
-      value={18}
+      title='TEST'
       label="Age"
     >
-      <MenuItem value={10}>Ten</MenuItem>
-      <MenuItem value={20}>Twenty</MenuItem>
-      <MenuItem value={30}>Thirty</MenuItem>
+      <MenuItem value={'ASD'}>Ten</MenuItem>
+      <MenuItem value={'QWE'}>Twenty</MenuItem>
+      <MenuItem value={'ZXC'}>Thirty</MenuItem>
     </Select>
     </FormControl>
   </Paper>

@@ -77,7 +77,7 @@ const mytheme={
     "MuiTableHead": {
       "styleOverrides": {
         "root": {
-          "backgroundColor": "#f8f9fa",
+          "backgroundColor": "#272b30",
           "color": "initial"
         }
       }
@@ -98,6 +98,83 @@ const mytheme={
       "styleOverrides": {
         "root": {
           "backgroundColor": "transparent"
+        }
+      }
+    },
+    "MuiTextField": {
+      "styleOverrides": {
+        "root": {
+          "backgroundColor": "#fff",
+          "color": "#272b30",
+          "borderColor": "rgba(0, 0, 0, 0.6)",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              "borderColor": "rgba(0, 0, 0, 0.6)"
+            },
+            "&:hover fieldset": {
+              "borderColor": "#80bdff"
+            },
+            "&.Mui-focused fieldset": {
+              "borderColor": "#80bdff"
+            },
+            "& .MuiInputLabel-root": {
+              "top": "10px"
+            },
+            "& .MuiInputBase-input": {
+              "color": "#272b30"
+            }
+          },
+          "& .MuiInputLabel-root": {
+            "color": "#7a8288",
+            "&.Mui-focused": {
+              "color": "#3a3f44"
+            }
+          },
+          "& .MuiInputBase-input": {
+            "color": "#272b30"
+          },
+          "& .MuiInputBase-input::placeholder": {
+            "color": "#6c757d"
+          },
+          "& input:disabled": {
+            "backgroundColor": "#ccc",
+            "color": "#7a8288"
+          }
+        }
+      }
+    },
+    "MuiInputLabel": {
+      "styleOverrides": {
+        "root": {
+          "color": "#7a8288",
+          "&.Mui-focused": {
+            "color": "#3a3f44"
+          }
+        }
+      }
+    },
+    "MuiSelect": {
+      "styleOverrides": {
+        "root": {
+          "backgroundColor": "#fff",
+          "color": "#272b30",
+          "borderColor": "rgba(0, 0, 0, 0.6)",
+          "&:hover": {
+            "borderColor": "#80bdff"
+          },
+          "&.Mui-focused": {
+            "borderColor": "#80bdff"
+          },
+          "& .MuiFormLabel-root": {
+            "top": "20px"
+          }
+        }
+      }
+    },
+    "MuiInputBase": {
+      "styleOverrides": {
+        "root": {
+          "paddingLeft": "10px"
         }
       }
     }
