@@ -1,34 +1,37 @@
 import fs from 'fs';
-import tinycolor from 'tinycolor2'; // A library to handle color manipulations
+import tinycolor from 'tinycolor2';
 
 // Function to resolve color value references and expressions like lighten, darken, rgba
 function resolveColorExpression(value, variableMap) {
   if (value && typeof value === 'string') {
-    // Step 1: Handle SCSS color functions like lighten, darken, rgba
-    value = value.replace(/lighten\(([^)]+),\s*(\d+)%\)/g, (match, color, percentage) => {
-      const resolvedColor = resolveColorExpression(color, variableMap); // Resolve color first
-      return tinycolor(resolvedColor).lighten(Number(percentage)).toHexString();
-    });
-
-    value = value.replace(/darken\(([^)]+),\s*(\d+)%\)/g, (match, color, percentage) => {
-      const resolvedColor = resolveColorExpression(color, variableMap); // Resolve color first
-      return tinycolor(resolvedColor).darken(Number(percentage)).toHexString();
-    });
-
-    value = value.replace(/rgba\(([^)]+),\s*(\d?\.?\d+)\)/g, (match, color, alpha) => {
-      const resolvedColor = resolveColorExpression(color, variableMap); // Resolve color first
-      return tinycolor(resolvedColor).setAlpha(Number(alpha)).toRgbString();
-    });
-
-    // Step 2: Resolve SCSS variable references
+    // Step 1: Resolve SCSS variable references
     if (value.startsWith('$')) {
-      const variableName = value.slice(1).trim();
-      value = variableMap[variableName] || value; // Resolve or return original value
+      const variableName = value.slice(1).trim(); // Remove the dollar sign
+      if (variableMap[variableName]) {
+        value = variableMap[variableName]; // Resolve to actual value from the map
+      } else {
+        console.warn(`Warning: Variable ${variableName} not found in map`);
+      }
     }
+
+    // Step 2: Handle SCSS color functions like lighten, darken, rgba
+
+    // Handle `lighten($color, 10%)`, `darken($color, 10%)`, `rgba($color, 0.5)`
+    value = value.replace(/(lighten|darken|rgba)\(([^)]+),\s*(\d?\.?\d+)%?\)/g, (match, fn, color, percentage) => {
+      // Resolve color first
+      const resolvedColor = resolveColorExpression(color.trim(), variableMap);
+      if (fn === 'lighten') {
+        return tinycolor(resolvedColor).lighten(Number(percentage)).toHexString();
+      } else if (fn === 'darken') {
+        return tinycolor(resolvedColor).darken(Number(percentage)).toHexString();
+      } else if (fn === 'rgba') {
+        return tinycolor(resolvedColor).setAlpha(Number(percentage)).toRgbString();
+      }
+      return match; // In case of an unknown function
+    });
 
     return value;
   }
-
   return value;
 }
 
@@ -64,6 +67,7 @@ export function mapToMuiTheme(bootstrapVars) {
       },
       text: {
         primary: resolveColorExpression(bootstrapVars['body-color'], bootstrapVars) || '#212529',
+        secondary: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d',
       }
     },
     typography: {
@@ -73,6 +77,21 @@ export function mapToMuiTheme(bootstrapVars) {
     shape: {
       borderRadius: parseInt(bootstrapVars['border-radius']) || 4,
     },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            color: resolveColorExpression(bootstrapVars['white'], bootstrapVars) || '#fff', // Set button text color
+            '&:hover': {
+              backgroundColor: resolveColorExpression(bootstrapVars['primary'], bootstrapVars) || '#007bff', // primary hover
+            },
+            '&.MuiSecondary': {
+              color: resolveColorExpression(bootstrapVars['gray-600'], bootstrapVars) || '#6c757d', // secondary button color
+            },
+          },
+        },
+      }
+    }
   };
 
   return theme;
@@ -84,7 +103,7 @@ export function convertTheme(filePath) {
   const vars = extractVariables(scss);
 
   // Debug: Log raw SCSS variables after cleaning up
-  console.log('Extracted Variables:', vars);
+  console.log('Extracted SCSS variables:', vars);
 
   return mapToMuiTheme(vars);
 }

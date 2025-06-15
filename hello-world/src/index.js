@@ -33,7 +33,8 @@ const mytheme={
       "paper": "#0d0d0d"
     },
     "text": {
-      "primary": "#aaa"
+      "primary": "#aaa",
+      "secondary": "#7a8288"
     }
   },
   "typography": {
@@ -42,6 +43,21 @@ const mytheme={
   },
   "shape": {
     "borderRadius": 4
+  },
+  "components": {
+    "MuiButton": {
+      "styleOverrides": {
+        "root": {
+          "color": "#fff",
+          "&:hover": {
+            "backgroundColor": "#3a3f44"
+          },
+          "&.MuiSecondary": {
+            "color": "#7a8288"
+          }
+        }
+      }
+    }
   }
 };
 
